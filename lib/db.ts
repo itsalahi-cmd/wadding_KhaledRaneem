@@ -1,5 +1,17 @@
-import fs from 'fs';
-import path from 'path';
+import { createClient } from 'redis';
+
+const redisUrl = process.env.REDIS_URL || '';
+const redisObj = createClient({ url: redisUrl });
+
+let isConnected = false;
+async function getRedis() {
+  if (!isConnected) {
+    if (!redisUrl) console.warn("REDIS_URL is strictly required for production.");
+    await redisObj.connect();
+    isConnected = true;
+  }
+  return redisObj;
+}
 
 export interface Guest {
   id: string;
@@ -10,33 +22,37 @@ export interface Guest {
   created_at: string;
 }
 
-const dbPath = path.resolve(process.cwd(), 'guests.json');
-
-export function getGuests(): Guest[] {
-  if (!fs.existsSync(dbPath)) {
+export async function getGuests(): Promise<Guest[]> {
+  try {
+    const client = await getRedis();
+    const data = await client.get('guests');
+    return data ? JSON.parse(data) : [];
+  } catch (err) {
+    console.error('Redis get error:', err);
     return [];
   }
-  const data = fs.readFileSync(dbPath, 'utf-8');
-  return JSON.parse(data);
 }
 
-export function saveGuest(guest: Guest) {
-  const guests = getGuests();
+export async function saveGuest(guest: Guest) {
+  const client = await getRedis();
+  const guests = await getGuests();
   guests.push(guest);
-  fs.writeFileSync(dbPath, JSON.stringify(guests, null, 2));
+  await client.set('guests', JSON.stringify(guests));
 }
 
-export function deleteGuest(id: string) {
-  const guests = getGuests();
+export async function deleteGuest(id: string) {
+  const client = await getRedis();
+  const guests = await getGuests();
   const updated = guests.filter(g => g.id !== id);
-  fs.writeFileSync(dbPath, JSON.stringify(updated, null, 2));
+  await client.set('guests', JSON.stringify(updated));
 }
 
-export function updateGuestCompanionCount(id: string, count: number) {
-  const guests = getGuests();
+export async function updateGuestCompanionCount(id: string, count: number) {
+  const client = await getRedis();
+  const guests = await getGuests();
   const index = guests.findIndex(g => g.id === id);
   if (index !== -1) {
     guests[index].companion_count = count;
-    fs.writeFileSync(dbPath, JSON.stringify(guests, null, 2));
+    await client.set('guests', JSON.stringify(guests));
   }
 }

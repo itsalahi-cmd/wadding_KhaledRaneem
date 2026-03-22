@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getGuests, deleteGuest, updateGuestCompanionCount } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
-    const guests = getGuests();
+    const guests = await getGuests();
     // Sort by created_at descending
     guests.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
@@ -20,7 +22,7 @@ export async function DELETE(request: Request) {
     if (!id) {
       return NextResponse.json({ error: 'ID is required' }, { status: 400 });
     }
-    deleteGuest(id);
+    await deleteGuest(id);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Admin Delete Error:', error);
@@ -34,7 +36,7 @@ export async function PATCH(request: Request) {
     if (!id || companion_count === undefined) {
       return NextResponse.json({ error: 'ID and companion_count are required' }, { status: 400 });
     }
-    updateGuestCompanionCount(id, companion_count);
+    await updateGuestCompanionCount(id, companion_count);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Admin Update Error:', error);

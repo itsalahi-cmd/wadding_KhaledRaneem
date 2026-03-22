@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       created_at: new Date().toISOString()
     };
 
-    saveGuest(newGuest);
+    await saveGuest(newGuest);
 
     return NextResponse.json({ success: true, ticket_id });
   } catch (error) {
