@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+:root {
+  --primary-color: #A68A64; /* Elegant gold/bronze */
+  --bg-color: #FAF8F5; /* Warm off-white */
+  --text-primary: #2C2C2C;
+  --text-secondary: #5A5A5A;
+  --card-bg: #FFFFFF;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .serif, .title {
+  font-family: 'Cairo', sans-serif;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select {
+  font-family: inherit;
+}
+
+@media print {
+  body {
+    background: white;
+    direction: rtl;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

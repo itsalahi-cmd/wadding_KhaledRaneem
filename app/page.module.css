@@ -1,0 +1,253 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(circle at 50% 0%, #fffefe 0%, var(--bg-color) 100%);
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(166, 138, 100, 0.1);
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #d4af37, var(--primary-color), #d4af37);
+}
+
+.title {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.dividerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem 0;
+  opacity: 0.9;
+}
+
+.dividerLine {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #d4af37, #A68A64, #d4af37, transparent);
+}
+
+.dividerText {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.label {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.input, .select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0d8d0;
+  border-radius: 8px;
+  background: #fafafa;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(166, 138, 100, 0.1);
+  background: #fff;
+}
+
+.button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+.button:hover:not(:disabled) {
+  background-color: #8c7353;
+  transform: translateY(-2px);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ticketContainer {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 2px dashed var(--primary-color);
+  border-radius: var(--border-radius);
+  background: #fff8f0;
+}
+
+.ticketTitle {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.qrWrapper {
+  background: #fff;
+  padding: 1rem;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
+
+.ticketId {
+  font-family: monospace;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.successMessage {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.actionsGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.actionButton, .actionButtonSecondary {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.actionButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+.actionButton:hover {
+  background-color: #8c7353;
+  transform: translateY(-2px);
+}
+
+.actionButtonSecondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+.actionButtonSecondary:hover {
+  background-color: #fcfaf8;
+  transform: translateY(-2px);
+}
+
+
+
+@media print {
+  .formContainer, .title, .subtitle, .actionsGroup, .hideOnPrint {
+    display: none !important;
+  }
+  .container {
+    padding: 0;
+    min-height: auto;
+    background: white;
+  }
+  .card {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0;
+  }
+  .card::before {
+    display: none !important;
+  }
+  .ticketContainer {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: white;
+  }
+}
+
+.namesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.nameText {
+  font-size: 2.6rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  line-height: 1;
+}
+.ringsIcon {
+  color: #d4af37;
+  animation: ringPulse 4s infinite ease-in-out;
+  margin-top: 5px;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.06) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4)); }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+}
