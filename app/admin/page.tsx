@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 interface Guest {
@@ -89,7 +90,12 @@ export default function AdminDashboard() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>لوحة تحكم الحضور</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1 className={styles.title}>لوحة تحكم الحضور الدائمة (RSVPs)</h1>
+        <Link href="/admin/attendance" style={{ color: '#c9a45c', textDecoration: 'underline', fontSize: '1.2rem', fontWeight: 'bold' }}>
+          ← الانتقال لسجل الحضور المباشر (البوابة)
+        </Link>
+      </div>
 
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>

@@ -20,6 +20,8 @@ export interface Guest {
   companion_count: number;
   ticket_id: string;
   created_at: string;
+  scanned?: boolean;
+  scanned_at?: string;
 }
 
 export async function getGuests(): Promise<Guest[]> {
@@ -55,4 +57,30 @@ export async function updateGuestCompanionCount(id: string, count: number) {
     guests[index].companion_count = count;
     await client.set('guests', JSON.stringify(guests));
   }
+}
+
+export async function markGuestScanned(ticket_id: string): Promise<Guest | null> {
+  const client = await getRedis();
+  const guests = await getGuests();
+  const index = guests.findIndex(g => g.ticket_id === ticket_id);
+  if (index !== -1) {
+    guests[index].scanned = true;
+    guests[index].scanned_at = new Date().toISOString();
+    await client.set('guests', JSON.stringify(guests));
+    return guests[index];
+  }
+  return null;
+}
+
+export async function unmarkGuestScanned(id: string): Promise<Guest | null> {
+  const client = await getRedis();
+  const guests = await getGuests();
+  const index = guests.findIndex(g => g.id === id);
+  if (index !== -1) {
+    guests[index].scanned = false;
+    delete guests[index].scanned_at;
+    await client.set('guests', JSON.stringify(guests));
+    return guests[index];
+  }
+  return null;
 }

@@ -1,0 +1,126 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f9f6f0;
+  font-family: inherit;
+  color: #333;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #c9a45c;
+  text-align: center;
+  font-weight: 300;
+}
+
+.scannerCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+}
+
+.scannerWrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.resultCard {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 5rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.errorIcon {
+  font-size: 5rem;
+  color: #f44336;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.guestName {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.guestDetails {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+  background: #f9f6f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.guestDetails p {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: #c9a45c;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: #b59048;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 164, 92, 0.3);
+}
+
+.errorMsg {
+  color: #f44336;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Override html5-qrcode styles to make it look decent */
+.scannerWrapper :global(#qr-reader) {
+  border: 1px solid #eee !important;
+  border-radius: 8px;
+}
+.scannerWrapper :global(#qr-reader__scan_region) {
+  min-height: 300px;
+}
+.scannerWrapper :global(#qr-reader button) {
+  background-color: #c9a45c !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  margin: 10px 0 !important;
+}

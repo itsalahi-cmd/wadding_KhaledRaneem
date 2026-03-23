@@ -163,8 +163,11 @@ export default function RSVPPage() {
                 <option value="0">بدون مرافق</option>
                 <option value="1">مرافق واحد</option>
                 <option value="2">مرافقان</option>
-                <option value="3">ثلاثة مرافقين</option>
               </select>
+              <div style={{ marginTop: '1rem', textAlign: 'center', backgroundColor: '#fdfbf7', padding: '0.75rem', borderRadius: '8px', border: '1px dashed #e8dcc4' }}>
+                <div style={{ fontWeight: 'bold', color: '#c9a45c', fontSize: '1.05rem', marginBottom: '0.25rem' }}>جنة الأطفال منازلهم</div>
+                <div style={{ fontSize: '0.85rem', color: '#888' }}>الرجاء عدم إحضار الأطفال 🤍</div>
+              </div>
             </div>
 
             <button type="submit" disabled={loading} className={styles.button}>
